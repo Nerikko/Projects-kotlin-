@@ -300,62 +300,26 @@ fun insereNavio(tabuleiro: Array<Array<Char?>>, linha: Int, coluna: Int, orienta
 
 //TODO Enrico acabar
 fun preencheTabuleiroComputador(tabuleiroVazio: Array<Array<Char?>>, dimensao: Array<Int>) {
-    val tabuleiro = tabuleiroVazio
-    if (tabuleiro.size == 4) {
-        tabuleiro[0][0] = '1'
-        tabuleiro[3][3] = '1'
-    } else if (tabuleiro.size == 5) {
-        tabuleiro[0][0] = '1'
-        tabuleiro[4][0] = '2'
-        tabuleiro[4][1] = '2'
-        tabuleiro[2][2] = '3'
-        tabuleiro[2][3] = '3'
-        tabuleiro[2][4] = '3'
-    } else if (tabuleiro.size == 7) {
-        tabuleiro[0][0] = '1'
-        tabuleiro[0][6] = '1'
-        tabuleiro[2][0] = '2'
-        tabuleiro[2][1] = '2'
-        tabuleiro[2][4] = '3'
-        tabuleiro[2][5] = '3'
-        tabuleiro[2][6] = '3'
-        tabuleiro[4][0] = '4'
-        tabuleiro[4][1] = '4'
-        tabuleiro[4][2] = '4'
-        tabuleiro[4][3] = '4'
+
+    var linhas:Int
+    var colunas: Int
+    var orientaco = "NSOE"
+    var orientacaoNumber = 0
+    for (tamanho in 1..4) {
+        var quantidade = dimensao[tamanho - 1]
+        while (quantidade > 0) {
+            do{
+                do {
+                    linhas = (0..numLinhas-1).random()
+                    colunas = (0..numColunas-1).random()
+                } while (tabuleiroVazio[linhas][colunas]!= null)
+                orientacaoNumber=(0..3).random()
+            }while (!insereNavio(tabuleiroVazio,linhas+1,colunas+1,orientaco[orientacaoNumber].toString(),tamanho))
+
+            quantidade--
+        }
     }
-    else if (tabuleiro.size == 8) {
-        tabuleiro[0][0] = '1'
-        tabuleiro[0][7] = '1'
-        tabuleiro[0][3] = '2'
-        tabuleiro[0][4] = '2'
-        tabuleiro[2][0] = '2'
-        tabuleiro[2][1] = '2'
-        tabuleiro[3][4] = '3'
-        tabuleiro[3][5] = '3'
-        tabuleiro[3][6] = '3'
-        tabuleiro[6][1] = '4'
-        tabuleiro[6][2] = '4'
-        tabuleiro[6][3] = '4'
-        tabuleiro[6][4] = '4'
-    }
-    else if (tabuleiro.size == 10) {
-        tabuleiro[0][0] = '1'
-        tabuleiro[0][7] = '1'
-        tabuleiro[8][7] = '1'
-        tabuleiro[0][3] = '2'
-        tabuleiro[0][4] = '2'
-        tabuleiro[2][0] = '2'
-        tabuleiro[2][1] = '2'
-        tabuleiro[3][4] = '3'
-        tabuleiro[3][5] = '3'
-        tabuleiro[3][6] = '3'
-        tabuleiro[6][1] = '4'
-        tabuleiro[6][2] = '4'
-        tabuleiro[6][3] = '4'
-        tabuleiro[6][4] = '4'
-    }
-    tabuleiroComputador = tabuleiro
+    return
 }
 
 fun navioCompleto(tabuleiro: Array<Array<Char?>>, linha: Int, coluna: Int): Boolean {
