@@ -301,7 +301,7 @@ fun insereNavio(tabuleiro: Array<Array<Char?>>, linha: Int, coluna: Int, orienta
 //TODO Enrico acabar
 fun preencheTabuleiroComputador(tabuleiroVazio: Array<Array<Char?>>, dimensao: Array<Int>) {
 
-    
+
     var linhas:Int
     var colunas: Int
     var orientaco = "NSOE"
